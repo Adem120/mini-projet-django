@@ -1,0 +1,71 @@
+{% extends 'cdn1.html'%}
+{% block content %}
+{% block jss %}
+<script>
+    function deletedip(id){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="delDip/"+id
+             
+            }
+        
+          })
+    }
+</script>
+{% endblock jss %}
+<body>
+   {%block liste%}
+  <div class="container">
+  <div class="card mb-6"> 
+  <div class="card-body">
+   <h1>Liste des diplomes</h1>
+   <p align="right">
+    <a href="ajoutdip/" class="btn btn-primary">Ajouter un article</a>
+    </p>
+   <table border="1">
+   <thead>
+   <tr>
+      <td>ID</td>
+      <td>Diplome</td>
+      <td>Date de fin de étude</td>
+      <td>Type</td>
+      <td colspan="2">Accé</td>
+   </tr>
+   </thead>
+  
+  
+   <tbody>
+     
+      {% for d in D %}
+      
+      <tr>
+      <td>{{d.id}}</td>
+   <td>{{d.diplome}}</td>
+    <td>{{d.datefin}}</td>
+    {%for t in T%}
+    {%if d.Type_id == t.id%}
+    <td>{{t.TypeName}}</td>
+     {% endif %}
+     {% endfor%}
+     
+    <td><a  href="modif/{{d.id}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+   <a onclick="deletedip({{d.id}})" class="btn btn-danger"> <i class="bi bi-trash"></i> </a></td>
+    
+   </tr>
+   
+    {% endfor %}
+  </div>
+   </tbody> 
+   </table>
+   {% endblock liste%}
+  </body>
+ 
+{% endblock content %}

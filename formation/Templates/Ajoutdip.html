@@ -1,0 +1,44 @@
+{% extends 'cdn1.html'%}
+{% block content %}
+<body>
+    {% block h%}
+    <h1>
+    Ajouter un diplome
+    </h1>
+    {% endblock h%}
+   
+    <form class="m-lg-4"  {% block ac%} action="add_dip/"{% endblock ac%} method="post">
+    
+        {% csrf_token %}
+        <div class="col-sm-4 col-md-6 col-lg-4">
+            <label>Diplome</label>
+            
+            <input name="diplome" class="form-control"{% block d %} {% endblock d %}></td>
+            
+        </div>
+        <div class="col-sm-4 col-md-6 col-lg-4">
+            <label>Année de fin de etude </label>
+            
+            <input type="date" name="datefin" class="form-control"{% block date%}  {% endblock date%}>
+           
+        </div>
+        
+        <div class="col-sm-4 col-md-6 col-lg-4">
+            <label>Type </label>
+            <select name="d" class="form-control form-control-lg">
+                {% block t%}
+                <option value="">Select</option>
+                {% endblock t%}
+                {% for t in T%}
+                <option value="{{t.id}}">{{t.TypeName}}</option>
+               
+                {% endfor%}
+            </select>
+        </div>
+        <div class="col-sm-4 col-md-6 col-lg-4">
+            <br><input type="submit" {% block btn%} value="Ajouter"{% endblock btn%} class="btn btn-success">
+        </div>
+    </form>
+</body>
+
+{% endblock content %}

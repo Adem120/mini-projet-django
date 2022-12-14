@@ -1,0 +1,34 @@
+{% extends 'cdn1.html' %}
+{% load static %}
+{% block content %}
+
+<html>
+<head>
+
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+<body>
+    <div class="container">
+        <section id="content">
+            <form action="{% url 'loginaction' %}" method="post">
+                <h1>Login Form</h1>
+                    {% csrf_token %}
+                    {{ connect_form.as_div }}
+                    <input type="submit" value="Log in" />
+                    
+                </div>
+                {% if error %}
+               <script>
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Mot de pass/login incorecte!',
+              })</script>
+                {% endif %}
+            </form><!-- form -->
+           
+        </section><!-- content -->
+    </div><!-- container -->
+    </body>
+    {% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'formation.html'%}
+{% block liste%}
+
+{% block js %}
+<script>
+    function deletetyp(id){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="deltyp/"+id
+             
+            }
+        
+          })
+    }
+</script>
+{% endblock js %}
+<div class="container">
+    <div class="card mb-6"> 
+    <div class="card-body">
+     <h1>Liste des diplomes</h1>
+     <p align="right">
+      <a href="addtyp/" class="btn btn-primary">Ajouter un type</a>
+      </p>
+     <table border="1">
+     <thead>
+     <tr>
+        <td>ID</td>
+        <td>Type</td>
+        <td>Discription</td>
+        <td colspan="2">Accé</td>
+     </tr>
+     </thead>
+      <tbody>
+        {% for d in T %}
+        <tr>
+        <td>{{d.id}}</td>
+        <td>{{d.TypeName}}</td>
+        <td>{{d.description}}</td>
+        <td><a  href="modiftp/{{d.id}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+            <a href="#" onclick="deletetyp({{d.id}})" class="btn btn-danger"> <i class="bi bi-trash"></i> </a></td>
+          <tr>
+            {% endfor%}   
+      </tbody>  
+{% endblock liste%}

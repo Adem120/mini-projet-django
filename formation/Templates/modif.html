@@ -1,0 +1,21 @@
+
+{% extends 'ajoutdip.html'%}
+{% block h %}
+<h1>modifier diplome</h1>
+{% endblock h %}
+{% block ac%}
+action="modif_action/{{D.id}}"
+{% endblock ac%}
+{% block d%}
+ value="{{D.diplome}}"
+{%endblock d%}
+
+{% block date%} 
+value="{{D.datefin| date:"Y-m-d"}}"
+ {% endblock date%}
+{% block t%}
+<option class="bg-danger" value="{{D.Type_id}}">{{D.Type}}</option>
+{% endblock t%}
+{% block btn%}
+value="Modifier"
+{% endblock btn%}
